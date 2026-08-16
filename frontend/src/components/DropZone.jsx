@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-export default function DropZone({ onData }) {
+export default function DropZone({ onData, onDemo }) {
   const [files, setFiles] = useState([])
   const [dragging, setDragging] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -120,6 +120,45 @@ export default function DropZone({ onData }) {
           ANALYZE MY LISTENING HISTORY
         </button>
       )}
+
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+        margin: '0 0 1rem',
+      }}>
+        <div style={{ height: 1, flex: 1, background: 'var(--border)' }} />
+        <span style={{
+          color: 'var(--muted)',
+          fontFamily: "'Space Mono', monospace",
+          fontSize: '0.65rem',
+          letterSpacing: '0.12em',
+        }}>
+          NO SPOTIFY EXPORT YET?
+        </span>
+        <div style={{ height: 1, flex: 1, background: 'var(--border)' }} />
+      </div>
+
+      <button
+        onClick={onDemo}
+        style={{
+          display: 'block',
+          width: '100%',
+          padding: '1rem',
+          background: 'transparent',
+          color: 'var(--green)',
+          border: '1px solid var(--green)',
+          borderRadius: 4,
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: '1.2rem',
+          letterSpacing: '0.1em',
+          cursor: 'pointer',
+          transition: 'all 0.2s',
+          marginBottom: '2rem',
+        }}
+      >
+        VIEW DEMO WITH SAMPLE DATA
+      </button>
     </div>
   )
 }

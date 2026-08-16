@@ -13,6 +13,7 @@ import Recommendations from './components/Recommendations'
 import CompareView from './components/CompareView'
 import { useListeningData } from './hooks/useListeningData'
 import { computeExtendedStats, computeTimeline } from './utils/dataProcessing'
+import { createDemoHistory } from './utils/demoHistory'
 
 export default function App() {
   const {
@@ -207,6 +208,11 @@ export default function App() {
     runAnalysis(weighted, currentSeed, recMethod)
   }
 
+  const handleDemo = () => {
+    handleDataLoaded(createDemoHistory())
+    showToast('SAMPLE LISTENING HISTORY LOADED')
+  }
+
   return (
     <div>
       <Header />
@@ -298,7 +304,7 @@ export default function App() {
 
               <div id="upload-section" style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem', marginBottom: '2rem' }}>
                 <div className="section-label">{isCompareLink ? 'Step 1: Upload Your Data' : 'Analyze Your Own History'}</div>
-                <DropZone onData={handleDataLoaded} />
+                <DropZone onData={handleDataLoaded} onDemo={handleDemo} />
               </div>
 
               <Recommendations 
@@ -321,7 +327,7 @@ export default function App() {
               />
             </>
           ) : (
-            <DropZone onData={handleDataLoaded} />
+            <DropZone onData={handleDataLoaded} onDemo={handleDemo} />
           )}
         </div>
       ) : (
